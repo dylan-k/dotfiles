@@ -42,7 +42,7 @@ floating_modifier $mod
 bindsym $mod+grave exec i3-sensible-terminal
 
 # start file explorer
-bindsym $mod+e exec efe
+bindsym $mod+e exec sudo xfe
 
 # kill focused window
 # bindsym $mod+Shift+q kill
@@ -51,16 +51,6 @@ bindsym $mod+q kill
 # alt+tab like switching
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
-
-# program launcher
-
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+space exec "rofi -modi drun,run -show drun"
 
 # change focus
 # bindsym $mod+j focus left
@@ -117,6 +107,16 @@ bindsym $mod+a focus parent
 
 # log out / lock screen
 bindsym $mod+l exec loginctl lock-session 
+
+# program launcher
+
+# A more modern dmenu replacement is rofi:
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# There also is i3-dmenu-desktop which only displays applications shipping a
+# .desktop file. It is a wrapper around dmenu, so you need that installed.
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+space exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 
 
 
@@ -243,7 +243,7 @@ client.background         #2f343f
 
 
 
-#i3-gap configs
+# I3-GAPS
 ################################################################################
 #  For use with i3-gaps fork of i3 window manager
 #  More info visit: https://github.com/Airblader/i3
