@@ -1,61 +1,71 @@
+# i3status Variables
+# source: https://github.com/addy-dclxvi/i3-starterpack
+# WIFI: My interface is wlp1s0b1 and my ethernet adapter is enp1s0, 
+# You can find yours by /sbin/iwconfig or iwconfig command.
+# BATTERY: My battery id is BAT1, You can find yours by ls /sys/class/power_supply/ command.
+# VOLUME: My volume mixer is Alsa, probably also work for You. If not, see manual page to configure PulseAudio.
+# CPU: To use CPU temperature, You need your CPU temperature path. 
+# If /sys/class/thermal/thermal_zone0/temp doesn't work try /sys/devices/platform/coretemp.0/temp1_input. 
+# Still doesn't work? Ask Google yum
+# TIME: here's a cheatsheet https://devhints.io/datetime
+# COLOR you can style the span tags' foreground and background properties, using color hexcodes
+# You can add more module, just read the manual page man i3status.
+
 general {
-        output_format = "i3bar"
-        colors = false
-        markup = pango
-        interval = 5
-        color_good = '#2f343f'
+    output_format = "i3bar"
+    colors = false
+    markup = pango
+    interval = 5
+    color_good = '#2f343f'
 		color_degraded = '#ebcb8b'
 		color_bad = '#ba5e57'
 }
 
-order += "load"
-order += "cpu_temperature 0"
-order += "disk /"
-order += "disk /home"
-order += "ethernet enp1s0"
-order += "wireless wlp2s0"
+# order += "load"
+# order += "cpu_temperature 0"
+# order += "disk /"
+# order += "disk /home"
+# order += "ethernet enp1s0"
+order += "cpu_usage"
+order += "battery 0"
+order += "wireless wlp1s0b1"
 order += "volume master"
-order += "battery 1"
 order += "tztime local"
 
-load {
-        format = "<span background='#f59335'>  %5min Load </span>"
+# load {
+#         format = "<span foreground='#6A6C6E'>  %5min Load </span>"
+#         separator = false
+# }
+
+# cpu_temperature 0 {
+#         format = "<span foreground='#bf616a'>  %degrees °C </span>"
+#         path = "/sys/class/thermal/thermal_zone0/temp"
+#         separator = false
+# }
+
+# disk "/" {
+#         format = "<span foreground='#fec7cd'>  %free Free </span>"
+#         separator = false
+# }
+
+# disk "/home" {
+#         format = "<span foreground='#a1d569'>  %free Free </span>"
+#         separator = false
+# }
+
+# ethernet enp1s0 {
+#         format_up = "<span foreground='#88c0d0'>  %ip </span>"
+#         format_down = "<span foreground='#88c0d0'>  Disconnected </span>"
+#         separator = false
+# }
+
+cpu_usage {
+  format = "<span foreground='#929394'>  CPU %usage </span>"
 }
 
-cpu_temperature 0 {
-        format = "<span background='#bf616a'>  %degrees °C </span>"
-        path = "/sys/class/thermal/thermal_zone0/temp"
-}
-
-disk "/" {
-        format = "<span background='#fec7cd'>  %free Free </span>"
-}
-
-disk "/home" {
-        format = "<span background='#a1d569'>  %free Free </span>"
-}
-
-ethernet enp1s0 {
-        format_up = "<span background='#88c0d0'>  %ip </span>"
-        format_down = "<span background='#88c0d0'>  Disconnected </span>"
-}
-
-wireless wlp2s0 {
-        format_up = "<span background='#b48ead'>  %essid </span>"
-        format_down = "<span background='#b48ead'>  Disconnected </span>"
-}
-
-volume master {
-        format = "<span background='#ebcb8b'>  %volume </span>"
-        format_muted = "<span background='#ebcb8b'>  Muted </span>"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
-}
-
-battery 1 {
+battery 0 {
 	last_full_capacity = true
-        format = "<span background='#a3be8c'>  %status %percentage </span>"
+        format = "<span foreground='#929394'>  %status %percentage </span>"
         format_down = "No Battery"
         status_chr = "Charging"
         status_bat = "Battery"
@@ -63,10 +73,28 @@ battery 1 {
         status_full = "Charged"
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
+        separator = true
+}
+
+wireless wlp1s0b1 {
+        format_up = "<span foreground='#929394'>  %essid %quality</span>"
+        format_down = "<span foreground='#929394'>  Disconnected </span>"
+        separator = true
+}
+
+volume master {
+        format = "<span foreground='#929394'> ♪ %volume </span>"
+        format_muted = "<span foreground='#929394'>  Muted </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+        # min_width = 50
+        separator = true
 }
 
 tztime local {
-		format = "<span background='#81a1c1'> %time </span>"
-		format_time = " %a %-d %b %H:%M"
+		format = "<span foreground='#FFFFFF'> %time </span>"
+		format_time = " %a %b %-d %I:%M %p"
+    separator = false
 }
 
