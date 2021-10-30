@@ -252,18 +252,21 @@ client.background         #2f343f
 # This can be done by adding the following line to your config.
 for_window [class=".*"] border pixel 0
 
-# Activate smart borders (always)
-smart_gaps on
-smart_borders on
 # Hide edge borders only if there is one window with no gaps
 hide_edge_borders smart_no_gaps
+
+# Activate smart borders (always)
+smart_borders on
+
+gaps inner 10
+gaps outer 0
+smart_gaps on
 
 # Examples
 # gaps inner all set 20
 # gaps outer current plus 5
 # gaps horizontal current plus 40
 # gaps outer current toggle 60
-
 
 # Global gaps size
 # gaps inner 0
