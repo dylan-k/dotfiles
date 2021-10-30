@@ -1,0 +1,16 @@
+/*
+ * Default Rofi Config file
+ * Blanked out so that ~/.Xresources can config rofi
+ */
+
+/* defaults: */
+
+/* 
+configuration {
+	modi: "drun";
+	show-icons: false;
+	icon-theme: "Gruvbox";
+	theme: "pare";
+}
+*/
+
