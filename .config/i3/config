@@ -27,7 +27,7 @@ set $shift shift
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "01 Desktop"
 set $ws2 "02 Writing"
-set $ws3 "03 Terminal"
+set $ws3 "03 Coding"
 set $ws4 "04 Browser"
 set $ws5 "05"
 set $ws6 "06"
@@ -42,10 +42,12 @@ set $ws10 "10"
 # terminal will show for example: WM_CLASS(STRING) = "code", "Code"
 # that second value e.g. "Code" is the classname.
 assign [class="^Xfe$"]                    $ws1
-assign [class="^Code$"]                   $ws2
+assign [class="^Code$"]                   $ws3
 assign [class="^obsidian$"]               $ws2
 assign [class="^Zathura$"]                $ws2
 assign [class="^X-terminal-emulator$"]    $ws3
+assign [class="^Brave-browser$"]          $ws4
+# several of these are startup applications, listed below
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -100,19 +102,28 @@ bindsym $mod+$alt+BackSpace exec xfce4-taskmanager
 # KEYBINDS
 ###############################################################################
 
-# Media Controls
+# Sound Controls
+
+#increase sound volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+#decrease sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# mute sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# player controls
 # requires playerctl installed from https://github.com/altdesktop/playerctl/releases
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 2 toggle # mute sound
+
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp exec xrandr --output eDP-1 --brightness 1
+bindsym XF86MonBrightnessDown exec xrandr --output eDP-1 --brightness .5
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -277,7 +288,7 @@ hide_edge_borders smart_no_gaps
 # Activate smart borders (always)
 smart_borders on
 
-gaps inner 10
+gaps inner 20
 gaps outer 0
 smart_gaps on
 
@@ -342,9 +353,6 @@ smart_gaps on
 
 exec_always --no-startup-id feh --bg-scale /home/dylan/Assets/img/desktop-background.jpg # sets wallpaper
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -360,7 +368,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id redshift-gtk # redshift adjusts screen color
 exec --no-startup-id xfe
 exec --no-startup-id /opt/Obsidian/obsidian %U
-exec --no-startup-id i3-sensible-terminal
+# exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id code
 exec --no-startup-id brave-browser
 
