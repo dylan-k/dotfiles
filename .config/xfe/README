@@ -3,5 +3,5 @@ Dark Ice Adwaita Theme for the XFE file explorer
 https://store.kde.org/p/1180543/
 
 Make sure XFE is installed first.
-The xfwrc file goes in your ~/.config/xfe folder.
+ `xfwrc` and `xferc` files go in your ~/.config/xfe folder.
 Copy the Adwaita icons folder to /usr/share/xfe/icons/Adwaita

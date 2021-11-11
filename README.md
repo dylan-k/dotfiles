@@ -1,29 +1,20 @@
 # Dylan's Dotfiles
 
-This will become my dotfiles repo for Linux/Ubuntu. Messy at first because it combines a few examples.
+This repo is very messy right now!
 
-for starters let's include:
-```bash
-/home/dylan/README.md
+# Config
 
-# root fiiles
-/home/dylan/.bashrc
-/home/dylan/.bash_aliases
-/home/dylan/.Xresources
-/home/dylan/.xsettingsd
+**Config** is a basic checklist I follow to set up a new computer environment. It gets me up to speed with version control, terminals, application installs, package managers, and more so I can more quickly get to action.
 
-#.config/
-/home/dylan/.config/i3
-/home/dylan/.config/i3/config
-/home/dylan/.config/xfe/xferc
-/home/dylan/.config/dunst
-/home/dylan/.config/i3status
-/home/dylan/.config/compton.conf
+## Contents
 
-# other directories
-/home/dylan/.fonts
-/home/dylan/.urxvt
-```
+| File | Description |
+| --- | --- |
+| `.bash_profile` | Customizes the Terminal.app prompt and echoes the currently checked out Git branch. |
+| `.gitconfig` | Global Git configuration to specify my name and email, shortcuts, colors, and more. |
+| `.gitignore` | The ignore file from [twbs/bootstrap](https://github.com/twbs/bootstrap) that I use everywhere. |
+
+
 
 ## Introduction
 
