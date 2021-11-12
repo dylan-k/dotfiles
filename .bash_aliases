@@ -88,7 +88,7 @@ alias recipes="cd ~/Documents/Home/recipes && workspace"
 ###############################################################################
 
 #send git commands to headless dotfiles repo like `dotfiles status`
-alias dotfiles='git --git-dir=/home/dylan/.dotfiles/ --work-tree=/home/dylan'
+alias dotfiles="git --git-dir=/home/dylan/.dotfiles/ --work-tree=/home/dylan"
 
 alias valestyles="cd ~/.config/vale/ && git fetch --all && git submodule foreach git pull origin master && git status && open . && subl . && subl ~/.vale.ini"
 
@@ -117,6 +117,4 @@ fi
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
-
-
 

@@ -1,32 +1,53 @@
 [OPTIONS]
 textnumberforeground=Black
-width=668
-textfont=Sans,100,normal,regular
+width=653
+textfont=CourierPrimeCode Nerd Font Mono [QUQA],120,normal,regular
 tabcols=8
 linesnum=0
 textnumberbackground=Gray100
-textbackground=Gray100
+hilitematchtime=3000
 hidestatus=0
 wordwrap=0
-height=726
-textforeground=Black
+height=709
+textforeground=Gray100
 textselbackground=#4b6983
-texthiliteforeground=Black
-textcursor=Black
-hilitematchtime=3000
+texthiliteforeground=Teal
+textcursor=Red
 searchpath=
 texthilitebackground=#ff8080
 wrapcols=80
 hidetoolbar=0
 stripreturn=0
+textbackground=Black
 textselforeground=Gray100
 
 [Recent Files]
-FILE2=/home/dylan/.config/xfe/themefiles/Dark-Ice-theme/ReadMe
-FILE1=/home/dylan/.config/xfe/themefiles/README
+FILE6=/home/dylan/.gitconfig_old
+FILE7=/home/dylan/.config/xfe/themefiles/README
+FILE4=/home/dylan/.profile
+FILE5=/home/dylan/.config/i3/config
+FILE2=/home/dylan/.bash_aliases
+FILE3=/home/dylan/.bash_profile
+FILE1=/home/dylan/.config/alacritty/alacritty.yml
+FILE8=/home/dylan/.config/xfe/themefiles/Dark-Ice-theme/ReadMe
 
 [SETTINGS]
 tippause=500
 basecolor=Gray8
 tiptime=10000
+
+[FILEDIALOG]
+type_size=100
+hiddenfiles=1
+width=640
+attr_size=100
+user_size=50
+height=480
+ext_size=100
+grou_size=50
+liststyle=8388608
+modd_size=150
+showthumbnails=0
+name_size=200
+size_size=60
 

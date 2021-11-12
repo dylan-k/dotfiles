@@ -101,9 +101,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_functions ]; then
-    . ~/.bash_aliases
+    . ~/.bash_functions
 fi
-if [ -f ~/.bash_functions ]; then
+if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
@@ -127,3 +127,8 @@ parse_git_branch() {
 }
 # customize prompt
 export PS1="\n\[$(tput bold)\]\[$(tput setaf 5)\]➜ \[$(tput setaf 6)\]\w\[$(tput setaf 3)\]\$(parse_git_branch) \[$(tput sgr0)\]"
+
+# start the X11 Graphical Environment
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
+
+
