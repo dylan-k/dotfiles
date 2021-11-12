@@ -365,7 +365,11 @@ exec --no-startup-id nm-applet
 # Startup Apps
 # -----------------------------------------------------------------------------
 
-exec --no-startup-id redshift-gtk # redshift adjusts screen color
+
+# controls for the screen's color temperature
+# exec --no-startup-id redshift-gtk 
+exec --no-startup-id fluxgui
+
 exec --no-startup-id xfe
 exec --no-startup-id /opt/Obsidian/obsidian %U
 # exec --no-startup-id i3-sensible-terminal
