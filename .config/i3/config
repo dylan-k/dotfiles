@@ -122,8 +122,13 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Brightness control
-bindsym XF86MonBrightnessUp exec xrandr --output eDP-1 --brightness 1
-bindsym XF86MonBrightnessDown exec xrandr --output eDP-1 --brightness .5
+# make sure brightnessctl is installed
+# your user needs to be in the "video group"
+# sudo gpasswd -a <username> video
+# then reboot.
+bindsym XF86MonBrightnessUp exec brightnessctl set +10% # increase
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%- # decrease
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
