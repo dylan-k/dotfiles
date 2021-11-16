@@ -376,7 +376,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id fluxgui
 
 exec --no-startup-id xfe
-exec --no-startup-id /opt/Obsidian/obsidian %U
+exec --no-startup-id /opt/obsidian/Obsidian.AppImage %U
 # exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id code
 exec --no-startup-id brave-browser
