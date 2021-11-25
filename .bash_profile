@@ -9,3 +9,4 @@ syndaemon -i .5 -K -t -R -d
 # During bootup login, start the X11 Graphical Environment
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

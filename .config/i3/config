@@ -103,6 +103,7 @@ bindsym $mod+$alt+BackSpace exec xfce4-taskmanager
 ###############################################################################
 
 # Sound Controls
+# requires package pulseaudio-utils
 
 #increase sound volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -377,7 +378,7 @@ exec --no-startup-id fluxgui
 
 # prevent touchpad interruptions while typing
 # currently set to half-second delay. may need more.
-syndaemon -i .5 -K -t -R -d[
+exec syndaemon -i .5 -K -t -R -d
 
 exec --no-startup-id xfe
 exec --no-startup-id /opt/obsidian/Obsidian.AppImage %U

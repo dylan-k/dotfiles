@@ -14,7 +14,34 @@ This repo is very messy right now!
 | `.gitconfig` | Global Git configuration to specify my name and email, shortcuts, colors, and more. |
 | `.gitignore` | The ignore file from [twbs/bootstrap](https://github.com/twbs/bootstrap) that I use everywhere. |
 
+.bashrc - Gets run when bash is not a login prompt
 
+.bash_profile - Gets run when bash is a login prompt
+
+.inputrc - Configuration for everything that uses libreadline (including bash)
+
+.profile - like .bash_profile, except works for any bourne shell, not just bash
+
+.xprofile - no idea
+
+.xinitrc - clients to run for startx command.
+
+.xinitrc runs when you use xinit either directly or through startx. Useful if you don't use a login, to run commands for window manager, etc.
+
+.xprofile is pretty much the same thing, but for the login manager.
+
+.inputrc configures readline, which a lot of things use, so that's where you put your global keyboard combos and data input preferences.
+
+.profile is supposed to be sourced by every shell that is run as a login shell. These days, with graphical environments and terminal multiplexers, this means almost every shell, but originally, this would only execute once per login,  PATH for example.
+
+If your login shell is bash, it will first try to find .bash_profile, which a bash specific replacement for .profile. If it fails (and only if it fails) it will try to find and source .bash_login, another bash specific replacement for .profile. Only after it fails to find .bash_profile or .bash_login will it consider running .profile.
+
+.bashrc will load and reload on every session, so it is good for aliases, functions, and so on. It is only sourced by non-login shells, though. Since you need aliases in login shells as well, almost every .profile, .bash_profile and .bash_login in the world contain something like:
+~~~
+if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi
+~~~
 
 ## Introduction
 
@@ -95,49 +122,7 @@ So, the installation guide here will use Debian command & package name. <br />
 ![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-floating.jpg) <br />
 **Floating**, for show-off. <br />
 
-## Disclaimer
-I'm not a Pro. I just started learning Linux one year ago. And I'm not an IT guy. So, probably this guide will have some mistakes. 
-I hope You would correct me instead of insult me :cry: <br />
 
-## Reason
-I've got frequently questioned, "How to make my desktop looks like yours?". 
-I don't know why they ask it to me, my desktop doesn't even look nice. 
-So, I only answer "What DE do You use? Have You tried window manager? You can use Google to find some guide". <br />
-
-And the frequent reply..
-- "I have been following the guide I found, but my desktop still doesn't like yours". <br />
-
-Different level of reply..
-- "I don't know what is my DE. It's default on my Parrot Security."
-- "DE? What is DE? Btw, I use Kali Linux. Have You watched Mr.Robot?" <br />
-
-And my other reason writing this guide is, most of i3 guides I found on internet are just to install i3 and make it usable only. 
-Not how to de-uglify it :stuck_out_tongue: <br />
-
-## Why i3?
-i3 is (arguably) the most easiest tiling window manager to learn and configure. 
-And i3 has a really good documentation, including example command and troubleshooting.
-The community is also quite large. You will easily get more customization examples.
-So, I really recommend You to start from i3 if You want learn Linux customization.
-After You can handle i3, You can try more advanced window managers. 
-i3 is my first tiling window manager by the way :relaxed: <br />
-
-## Why Not i3-gaps?
-As I previously said, I prefer to use packages those are available on main repository.
-As far as I know i3-gaps package is only available on Arch, Void, Solus, and Alpine repository.
-And do You know? Airblader the i3-gaps developer himself doesn't use gaps!
-My whole life is a lie :confounded: <br />
-
-## Requirements
-- At least a working Desktop Environtment or Window Manager (I'm sure You already have it).
-Why? Just to make sure already have some essential packages like Xorg, Display Manager, Sound Mixer, Network Manager, etc.
-- My recommendation is start from Xfce. It's quite minimal for a Desktop Environtment. And We can use some of its useful components later.
-Like file manager, text editor, power manager, clipman, task manager, or maybe its settings daemon.
-- Willing to learn, patience, and ability to use Google for fixing problems.
-- Not give up easily. 100 times error, 100 times revert, 100 times retry every single day until three years in a row can break your limiter :laughing:
-- Some great musics for companion. 
-I recommend You to listen [Scenes from a Memory](https://www.youtube.com/playlist?list=PL0tX8IvlqTFtpB-H5g_xDK2SXuDkixjva) album by Dream Theater.
-- :coffee: <br />
 
 ## Installation
 - **First, install i3 of course** <br />
@@ -158,8 +143,7 @@ If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automati
 - Noto Sans and M+ are my favourite fonts used in my configuration.
 - Xsettingsd is a simple settings daemon to load fontconfig and some other options. Without this, fonts would look rasterized in some applications.
 - LXAppearance is used for changing GTK theme icons, fonts, and some other preferences.
-- Scrot is for taking screenshoot. I use it in my configuration for Print Screen button.
-I set my Print Screen button to take screenshoot using scrot, then automatically open it using Viewnior image viewer. <br />
+- Scrot is for taking screenshoot. I use it in my configuration for Print Screen button. I set my Print Screen button to take screenshoot using scrot, then automatically open it using Viewnior image viewer.
 
 ## Copying Configurations
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git` <br />

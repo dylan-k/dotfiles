@@ -22,14 +22,15 @@ textbackground=Black
 textselforeground=Gray100
 
 [Recent Files]
-FILE6=/home/dylan/.gitconfig_old
-FILE7=/home/dylan/.config/xfe/themefiles/README
-FILE4=/home/dylan/.profile
-FILE5=/home/dylan/.config/i3/config
-FILE2=/home/dylan/.bash_aliases
-FILE3=/home/dylan/.bash_profile
-FILE1=/home/dylan/.config/alacritty/alacritty.yml
-FILE8=/home/dylan/.config/xfe/themefiles/Dark-Ice-theme/ReadMe
+FILE6=/home/dylan/.profile
+FILE7=/home/dylan/.gitconfig_old
+FILE4=/home/dylan/.bash_aliases
+FILE5=/home/dylan/.bash_profile
+FILE2=/home/dylan/.config/i3/config
+FILE3=/home/dylan/.config/alacritty/alacritty.yml
+FILE1=/home/dylan/.dotfiles/COMMIT_EDITMSG
+FILE8=/home/dylan/.config/xfe/themefiles/README
+FILE9=/home/dylan/.config/xfe/themefiles/Dark-Ice-theme/ReadMe
 
 [SETTINGS]
 tippause=500
