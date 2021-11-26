@@ -367,6 +367,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# polkit handles user authentication, e.g. when editing system files in vscode
+# requires a policy kit installed. I chose one for gnome, not finidng a generic
+# installed via   sudo apt install policykit-1-gnome
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 # Startup Apps
 # -----------------------------------------------------------------------------
