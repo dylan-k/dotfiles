@@ -29,7 +29,7 @@ alias gh='history|grep'
 workspace() {
   echo "fetching updates..."
   git fetch && 
-  echo "staashing local changes..."
+  echo "stashing local changes..."
   git stash save --include-untracked && 
   echo "pulling local changes..."
   git pull && 
@@ -132,3 +132,4 @@ alias ls="command ls ${colorflag}"
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
+
