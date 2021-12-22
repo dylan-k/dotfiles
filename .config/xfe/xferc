@@ -1,9 +1,9 @@
 [OPTIONS]
-height=709
+height=747
 toolstoolbar=1
 folder_warn=1
 panel_view=1
-width=653
+width=1366
 use_startup_notification=1
 preserve_date_warn=1
 confirm_delete=1
@@ -37,6 +37,10 @@ confirm_drag_and_drop=1
 [HISTORY]
 open=code:xfwrite:
 filter=*:
+
+[bookmarks]
+BOOKMARK1=/home/dylan/Notes
+BOOKMARK2=/home/dylan
 
 [KEYBINDINGS]
 search_prev=Shift-Ctrl-G
@@ -135,9 +139,11 @@ name_size=401
 lastdir=/home/dylan
 size_size=41
 
-[DIR PANEL]
-hidden_dir=0
-sort_func=ascendingCase
+[PROGS]
+archiver=/usr/bin/archive
+txteditor=code
+videoplayer=smplayer
+xterm=xterm
 
 [LEFT PANEL]
 type_size=293
@@ -158,22 +164,16 @@ name_size=1404
 lastdir=/home/dylan
 size_size=180
 
-[PROGS]
-archiver=/usr/bin/archive
-txteditor=code
-videoplayer=smplayer
-xterm=xterm
-
 [SETTINGS]
 listforecolor=#d2d2d2
 iconpath=/usr/share/xfe/icons/Adwaita
 hilitecolor=#181818
 single_click=0
 highlightcolor=#1e1e1e
-textfont=Segoe UI [MS  ],140,normal,regular
+textfont=Inter [RSMS],140,normal,regular
 bordercolor=Black
 activecolorpane=1
-font=Segoe UI [MS  ],140,normal,regular
+font=Inter [RSMS],140,normal,regular
 listbackcolor=#1e1e1e
 scrollbarsize=15
 shadowcolor=#0e0e0e
@@ -428,7 +428,7 @@ showthumbnails=0
 name_size=200
 size_size=60
 
-[bookmarks]
-BOOKMARK1=/home/dylan/Notes
-BOOKMARK2=/home/dylan
+[DIR PANEL]
+hidden_dir=0
+sort_func=ascendingCase
 
