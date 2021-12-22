@@ -1,4 +1,4 @@
-export TERMINAL="rxvt-unicode"
+export TERMINAL="XTerm"
+[[ -e ~/.Xresources ]] && xrdb ~/.Xresources
 alias open="xdg-open"
-i3
-
+exec i3

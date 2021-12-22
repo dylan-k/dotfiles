@@ -94,7 +94,7 @@ volume master {
 
 tztime local {
 		format = "<span foreground='#FFFFFF'> %time </span>"
-		format_time = " %a %b %-d %I:%M %p"
+		format_time = " %a %b %-d  %I:%M %p"
     separator = false
 }
 

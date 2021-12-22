@@ -27,9 +27,9 @@ set $shift shift
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "01 Desktop"
 set $ws2 "02 Writing"
-set $ws3 "03 Coding"
+set $ws3 "03 Terminal"
 set $ws4 "04 Browser"
-set $ws5 "05"
+set $ws5 "05 Code"
 set $ws6 "06"
 set $ws7 "07"
 set $ws8 "08"
@@ -42,7 +42,7 @@ set $ws10 "10"
 # terminal will show for example: WM_CLASS(STRING) = "code", "Code"
 # that second value e.g. "Code" is the classname.
 assign [class="^Xfe$"]                    $ws1
-assign [class="^Code$"]                   $ws3
+assign [class="^Code$"]                   $ws5
 assign [class="^obsidian$"]               $ws2
 assign [class="^Zathura$"]                $ws2
 assign [class="^X-terminal-emulator$"]    $ws3
@@ -73,7 +73,12 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# window modes for certain apps
+for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
 
+for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
 # LAUNCHERS
 ###############################################################################
@@ -357,11 +362,15 @@ smart_gaps on
 # INIT
 ################################################################################
 
-exec_always --no-startup-id feh --bg-scale /home/dylan/Assets/img/desktop-background.jpg # sets wallpaper
+# load my custom system configs
+exec xrdb ~/.Xresources
+
+# desktop wallpaper
+exec_always --no-startup-id feh --bg-scale /home/dylan/Assets/wallpaper/desktop-background.jpg# sets wallpaper
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -372,26 +381,21 @@ exec --no-startup-id nm-applet
 # installed via   sudo apt install policykit-1-gnome
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
-# Startup Apps
-# -----------------------------------------------------------------------------
-
-
 # controls for the screen's color temperature
 # exec --no-startup-id redshift-gtk 
 exec --no-startup-id fluxgui
 
 # prevent touchpad interruptions while typing
+# source: https://www.computercorrect.com/2012/operating-systems/linux/xubuntu/configure-disable-touchpad-while-typing-delay/
 # currently set to half-second delay. may need more.
 exec syndaemon -i .5 -K -t -R -d
 
+
+# Startup Apps
+# -----------------------------------------------------------------------------
+
 exec --no-startup-id xfe
 exec --no-startup-id /opt/obsidian/Obsidian.AppImage %U
-# exec --no-startup-id i3-sensible-terminal
-exec --no-startup-id code
+exec --no-startup-id i3-sensible-terminal
+# exec --no-startup-id code
 exec --no-startup-id brave-browser
-
-for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
-
-for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
-
-for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus

@@ -1,9 +1,9 @@
 [OPTIONS]
-height=749
+height=709
 toolstoolbar=1
 folder_warn=1
 panel_view=1
-width=1366
+width=653
 use_startup_notification=1
 preserve_date_warn=1
 confirm_delete=1
@@ -140,23 +140,23 @@ hidden_dir=0
 sort_func=ascendingCase
 
 [LEFT PANEL]
-type_size=67
+type_size=293
 deldate_size=200
 origpath_size=200
 liststyle=0
-attr_size=67
-user_size=35
+attr_size=293
+user_size=153
 hiddenfiles=1
 dirs_first=1
-ext_size=67
-grou_size=35
-modd_size=102
+ext_size=293
+grou_size=153
+modd_size=446
 ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
-name_size=321
+name_size=1404
 lastdir=/home/dylan
-size_size=41
+size_size=180
 
 [PROGS]
 archiver=/usr/bin/archive
@@ -429,5 +429,6 @@ name_size=200
 size_size=60
 
 [bookmarks]
-BOOKMARK1=/home/dylan
+BOOKMARK1=/home/dylan/Notes
+BOOKMARK2=/home/dylan
 

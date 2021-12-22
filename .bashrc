@@ -140,5 +140,10 @@ if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
 
+# settings for homebrew linux
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-
+# settings for node, node package manager, node version manager
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+NODE_PATH=$HOME/.nvm/versions/node/v17.2.0/lib/node_modules.
