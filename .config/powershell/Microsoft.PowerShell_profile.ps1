@@ -1,26 +1,27 @@
 # DYLAN'S POWERSHELL PROFILE
 # like .bash_profile but for Windows PowerShell
-# store file in:
-# %USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+# Check location of this file by querying the $PROFILE variable in PowerShell.
+# Typically the path is
+# Windows - $Home\Documents\WindowsPowerShell\profile.ps1
+# Windows - $Home\Documents\WindowsPowerShell\Microsoft.VSCode_profile.ps1
 # Windows - $Home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-# Linux - ~/.config/powershell/Microsoft.Powershell_profile.ps1
-# macOS - ~/.config/powershell/Microsoft.Powershell_profile.ps1
+# ~Nix    - ~/.config/powershell/Microsoft.Powershell_profile.ps1
 ###############################################################################
 
 
 # PATH
 ################################################################################
-# $env:Path += ";$env:userprofile\AppData\Local\Programs"   
+# $env:Path += ";$env:userprofile\AppData\Local\Programs"
 
 
-# FUNCTIONS 
+# FUNCTIONS
 ################################################################################
 
 # update git repo and then open in vscode
 function workspace {
-  git fetch; 
+  git fetch;
   git status;
-  code . 
+  code .
 }
 
 # quickly edit this config file
@@ -52,7 +53,11 @@ function flatten {
 
 function open { explorer.exe . }
 function home { set-location "H:\" }
+function documents { set-location "H:\Documents\" }
+function docs { set-location "H:\Documents\" }
+function downloads { set-location "C:\Users\Dylan\Downloads\" }
 function sites { set-location "H:\Sites\" ; explorer.exe . }
+function notes { set-location "H:\Notes\" ; explorer.exe .; workspace }
 function valestyles { set-location "$env:userprofile\.config\vale"; workspace }
 
 ## Moving around
@@ -68,10 +73,10 @@ function up8 { cd ../../../../../../../.. }
 function up9 { cd ../../../../../../../../.. }
 function up10 { cd ../../../../../../../../../.. }
 
-New-Alias which get-command
+# New-Alias which get-command
 Remove-Item alias:\where -Force
 New-Alias where get-command -Force
- 
+
 
 # INIT
 ################################################################################
@@ -80,17 +85,38 @@ New-Alias where get-command -Force
 # annoyingly this breaks some scripts and breaks "open directory in terminal"
 # set-location "H:\"
 
-# Powerline
+# Starship Prompt
+# https://starship.rs/guide/#%F0%9F%9A%80-installation
+# https://starship.rs/config/#prompt
+# ------------------------------------------------------------------------------
+Invoke-Expression (&starship init powershell)
+$ENV:STARSHIP_CACHE = "C:\Temp"
+
+# in addition to styling the prompt, you can style the command line itself
+# e.g.: https://stackoverflow.com/a/65016361/1649888
+Set-PSReadLineOption -Colors @{ Command = 'DarkCyan' }
+
+
+# Oh-My-Posh Powerline
 # ------------------------------------------------------------------------------
 
 # Install with:
 #   Install-Module posh-git -Scope CurrentUser
 #   Install-Module oh-my-posh -Scope CurrentUser
-Import-Module posh-git
-Import-Module oh-my-posh
-Set-PoshPrompt -Theme powerline
+#   isntall icons with:
+#   Install-Module -Name Terminal-Icons -Repository PSGallery
+#   use icons at startup by adding this to profile:
+#   Import-Module -Name Terminal-Icons
+# Import-Module posh-git
+# $env:POSH_GIT_ENABLED = $true
+# Import-Module posh-git
+# Import-Module oh-my-posh
+# Set-PoshPrompt-Theme jblab_2021
+# Enable-PoshTransientPrompt
+# oh-my-posh --init --shell pwsh --config C:\Users\Dylan\AppData\Local\Programs\oh-my-posh\themes\powerline.omp.json| Invoke-Expression
 
 # Chocolatey profile
+# ------------------------------------------------------------------------------
 # $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 # if (Test-Path($ChocolateyProfile)) {
 #   Import-Module "$ChocolateyProfile"
