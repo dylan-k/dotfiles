@@ -16,6 +16,8 @@
 # COMMANDS
 ###############################################################################
 
+alias weather="curl wttr.in"
+
 alias open="xdg-open"
 
 alias flatten="find ./ -mindepth 999 -type f -exec mv -i '{}' . \;"
