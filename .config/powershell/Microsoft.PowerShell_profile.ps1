@@ -2,9 +2,8 @@
 # like .bash_profile but for Windows PowerShell
 # Check location of this file by querying the $PROFILE variable in PowerShell.
 # Typically the path is
-# Windows - $Home\Documents\WindowsPowerShell\profile.ps1
-# Windows - $Home\Documents\WindowsPowerShell\Microsoft.VSCode_profile.ps1
-# Windows - $Home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+# %USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+# %USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 # ~Nix    - ~/.config/powershell/Microsoft.Powershell_profile.ps1
 ###############################################################################
 
