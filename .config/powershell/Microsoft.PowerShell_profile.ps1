@@ -1,11 +1,14 @@
 # DYLAN'S POWERSHELL PROFILE
 # like .bash_profile but for Windows PowerShell
+#
 # store file in:
 # Windows - $Home\Documents\WindowsPowerShell\profile.ps1
 # Windows - $Home\Documents\WindowsPowerShell\Microsoft.VSCode_profile.ps1
 # Windows - $Home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 # Linux - ~/.config/powershell/Microsoft.Powershell_profile.ps1
 # macOS - ~/.config/powershell/Microsoft.Powershell_profile.ps1
+#
+# after saving changes, do `& $profile` in powershell to reload
 ###############################################################################
 
 
