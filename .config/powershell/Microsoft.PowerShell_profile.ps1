@@ -2,14 +2,12 @@
 # like .bash_profile but for Windows PowerShell
 #
 # store file in:
-# Windows - $Home\Documents\WindowsPowerShell\profile.ps1
-# Windows - $Home\Documents\WindowsPowerShell\Microsoft.VSCode_profile.ps1
 # Windows - $Home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 # Linux - ~/.config/powershell/Microsoft.Powershell_profile.ps1
 # macOS - ~/.config/powershell/Microsoft.Powershell_profile.ps1
 #
-# after saving changes, do `& $profile` in powershell to reload
-###############################################################################
+# after saving changes, do `.$profile` in powershell to reload
+################################################################################
 
 
 # PATH
@@ -29,7 +27,7 @@ function workspace {
 
 # quickly edit this config file
 function config {
-  code $env:userprofile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+  code $profile
 }
 
 # hard reset git repository to latest online version
@@ -53,11 +51,12 @@ function flatten {
 
 # open emacs in terminal by default
 # source: https://superuser.com/questions/339105/how-do-i-launch-emacs-in-terminal-mode-within-powershell
-$emacs_wildcard = "C:\ProgramData\chocolatey\bin\emacs.exe"
+$emacs_wildcard = "C:\ProgramData\chocolatey\bin\emacs.EXE"
 if ($(Test-Path $emacs_wildcard)) {
   $emacs_path = (Get-ChildItem $emacs_wildcard)[-1].FullName -replace ' ', '` '
   function emacs { "$emacs_path -nw $args" | Invoke-Expression }
 }
+
 
 # ALIASES
 ################################################################################
@@ -97,18 +96,13 @@ New-Alias where get-command -Force
 # annoyingly this breaks some scripts and breaks "open directory in terminal"
 # set-location "H:\"
 
-# Powerline
+# Starship Prompt
+# https://starship.rs/guide/#%F0%9F%9A%80-installation
+# https://starship.rs/config/#prompt
 # ------------------------------------------------------------------------------
+Invoke-Expression (&starship init powershell)
+$ENV:STARSHIP_CACHE = "C:\Temp"
 
-# Install with:
-#   Install-Module posh-git -Scope CurrentUser
-#   Install-Module oh-my-posh -Scope CurrentUser
-# Import-Module posh-git
-$env:POSH_GIT_ENABLED = $true
-Import-Module posh-git
-
-# Chocolatey profile
-# $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-# if (Test-Path($ChocolateyProfile)) {
-#   Import-Module "$ChocolateyProfile"
-# }
+# in addition to styling the prompt, you can style the command line itself
+# e.g.: https://stackoverflow.com/a/65016361/1649888
+Set-PSReadLineOption -Colors @{ Command = 'DarkCyan' }
