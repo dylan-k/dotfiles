@@ -32,7 +32,7 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(package-selected-packages
-   '(vscode-dark-plus-theme vs-dark-theme markdown-mode dashboard use-package)))
+   '(ergoemacs-mode helm vscode-dark-plus-theme vs-dark-theme markdown-mode dashboard use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -56,8 +56,9 @@
 
 
 
-;; PACKAGES
+;;; PACKAGES ===================================================================
 
+;; Emacs Dashboard -------------------------------------------------------------
 ;; Emacs Dashboard is an extensible startup screen showing you recent files, bookmarks, agenda items and an Emacs banner.
 ;; https://github.com/emacs-dashboard/emacs-dashboard
 (use-package dashboard
@@ -85,22 +86,44 @@
 
 (setq dashboard-items '((recents  . 5)
                         (bookmarks . 5)
-                        (projects . 5)
+                      ;;  (projects . 5)
                         (agenda . 5)
                         (registers . 5)))
 
 
-
-;;; KEYBINDS
-
-;; + list-packages After, find the package ergoemacs-mode and install it with
-;; Then add the following to your ~/.emacs or ~/.emacs.d/init.el file:
-
-;; (package-initialize)
-;; (require 'ergoemacs-mode)
+;; Helm ------------------------------------------------------------------------
+;; Helm is an incremental completion and selection narrowing framework
+;; http://tuhdo.github.io/helm-intro.html
+(require 'helm-config)
+(helm-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 
-;;; MAJOR MODES ________________________________________________________
+;; ergoemacs--------------------------------------------------------------------
+;; Use the commonly bound keys familiar to most people today.
+;; https://ergoemacs.github.io/
+
+(require 'ergoemacs-mode)
+(setq ergoemacs-theme nil) ;; Uses Standard Ergoemacs keyboard theme
+(setq ergoemacs-keyboard-layout "us") ;; Assumes QWERTY keyboard layout
+(ergoemacs-mode 1)
+
+
+;; Undo-fu
+;; light wrapper for Emacs built-in undo system, adding convenient undo/redo
+;; https://github.com/emacsmirror/undo-fu
+(use-package undo-fu
+  :config
+  (global-unset-key (kbd "C-z"))
+  (global-set-key (kbd "C-z")   'undo-fu-only-undo)
+  (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
+
+;;; KEYBINDS ===================================================================
+
+;; "command palatte" minibuffer provided by Helm
+(global-set-key (kbd "C-S-p")   'helm-M-x)
+
+;;; MAJOR MODES ================================================================
 
 ; Markdown Mode
 ; Used with .md , .txt, and .markdown files
@@ -109,10 +132,16 @@
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)
-         ("\\.txt\\'" . markdown-mode))
+         ("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . gfm-mode)
+         ("\\.txt\\'" . gfm-mode))
   :init (setq markdown-command "multimarkdown"))
+(setq default-major-mode 'gfm-mode) ;; markdown mode by default
+(setq initial-major-mode 'gfm-mode) ;; use markdown mode for scratch file
+(setq initial-scratch-message "\
+# This buffer is for notes you don't want to save, and for Ruby code.
+# If you want to create a file, visit that file with C-x C-f,
+# then enter the text in that file's own buffer.")
 
 ;; ORG MODE
 ;; https://lucidmanager.org/productivity/emacs-for-distraction-free-writing/
