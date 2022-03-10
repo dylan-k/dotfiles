@@ -32,7 +32,7 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode t)
  '(package-selected-packages
-   '(ergoemacs-mode helm vscode-dark-plus-theme vs-dark-theme markdown-mode dashboard use-package)))
+   '(multiple-cursors ergoemacs-mode helm vscode-dark-plus-theme vs-dark-theme markdown-mode dashboard use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -96,7 +96,7 @@
 ;; http://tuhdo.github.io/helm-intro.html
 (require 'helm-config)
 (helm-mode 1)
-(global-set-key (kbd "M-x") 'helm-M-x)
+;; (global-set-key (kbd "M-x") 'helm-M-x)
 
 
 ;; ergoemacs--------------------------------------------------------------------
@@ -118,10 +118,24 @@
   (global-set-key (kbd "C-z")   'undo-fu-only-undo)
   (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
 
+
+;; Multiple Cursors
+;; https://github.com/magnars/multiple-cursors.el
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-l") 'mc/edit-ends-of-lines)
+(global-set-key (kbd "M-f") 'mc/mark-all-like-this)
+(define-key mc/keymap (kbd "<return>") nil)
+;; (define-key mc/keymap (kbd "<home>") nil)
+
 ;;; KEYBINDS ===================================================================
 
 ;; "command palatte" minibuffer provided by Helm
 (global-set-key (kbd "C-S-p")   'helm-M-x)
+
+;; use home key to move cursor to start of line
+(global-set-key (kbd "<home>") 'move-beginning-of-line)
+(global-set-key (kbd "<C-home>") 'beginning-of-buffer)
+(global-set-key (kbd "<end>") 'end-of-line)
 
 ;;; MAJOR MODES ================================================================
 
