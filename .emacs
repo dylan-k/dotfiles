@@ -56,7 +56,7 @@
 
 
 
-;;; PACKAGES ===================================================================
+;;; Emacs Actions ===================================================================
 
 ;; Emacs Dashboard -------------------------------------------------------------
 ;; Emacs Dashboard is an extensible startup screen showing you recent files, bookmarks, agenda items and an Emacs banner.
@@ -91,7 +91,7 @@
                         (registers . 5)))
 
 
-;; Helm ------------------------------------------------------------------------
+;; "Command Palatte" ------------------------------------------------------------------------
 ;; Helm is an incremental completion and selection narrowing framework
 ;; http://tuhdo.github.io/helm-intro.html
 (require 'helm-config)
@@ -109,7 +109,7 @@
 (ergoemacs-mode 1)
 
 
-;; Undo-fu
+;; Undo/redo
 ;; light wrapper for Emacs built-in undo system, adding convenient undo/redo
 ;; https://github.com/emacsmirror/undo-fu
 (use-package undo-fu
@@ -118,24 +118,55 @@
   (global-set-key (kbd "C-z")   'undo-fu-only-undo)
   (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
 
+;; Move Cursor to Start/End of Line
+;; source: https://stackoverflow.com/questions/6035872/#comment73370168_35394552
+(defun my--smart-beginning-of-line ()
+"Move point to `beginning-of-line'. If repeat command it cycle position between `back-to-indentation' and `beginning-of-line'."
+  (interactive "^")
+  (if (eq last-command 'my--smart-beginning-of-line)       (if (= (line-beginning-position) (point))           (back-to-indentation)           (beginning-of-line))     (back-to-indentation)))
+
+(defun my--smart-end-of-line ()
+  "Move point to `end-of-line'. If repeat command it cycle
+position between last non-whitespace and `end-of-line'."
+  (interactive "^")
+  (if (and (eq last-command 'my--smart-end-of-line)
+           (= (line-end-position) (point)))
+      (skip-syntax-backward " " (line-beginning-position))
+    (end-of-line)))
+
+(global-set-key (kbd "<home>")     'my--smart-beginning-of-line)
+(global-set-key (kbd "<end>")      'my--smart-end-of-line)
+
 
 ;; Multiple Cursors
+;; https://github.com/rolandwalker/multiple-line-edit.el
+;; Custom-installed plugin
+;; on windows it's stored at C:\Users\Dylan\AppData\Roaming\.emacs.d
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/custom/multiple-line-edit"))
+;; (require 'multiple-line-edit)
+;; (global-set-key (kbd "C-S-l") 'mulled/edit-trailing-edges)
+;; doesn't work with home key to bring all cursors to line start.
+;; only seems to move cusrors by counting positions
+
 ;; https://github.com/magnars/multiple-cursors.el
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-l") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "M-f") 'mc/mark-all-like-this)
-(define-key mc/keymap (kbd "<return>") nil)
+;; more configs: C:\Users\Dylan\AppData\Roaming\.emacs.d\.mc-lists.el
+;; (require 'multiple-cursors)
+;; (global-set-key (kbd "C-S-l") 'mc/edit-ends-of-lines)
+;;(global-set-key (kbd "M-f") 'mc/mark-all-like-this)
+;; (define-key mc/keymap (kbd "<return>") nil)
 ;; (define-key mc/keymap (kbd "<home>") nil)
+;; doesn't work with home key to bring all cursors to line start. Shows an error.
+
+
+
+
 
 ;;; KEYBINDS ===================================================================
 
 ;; "command palatte" minibuffer provided by Helm
 (global-set-key (kbd "C-S-p")   'helm-M-x)
 
-;; use home key to move cursor to start of line
-(global-set-key (kbd "<home>") 'move-beginning-of-line)
-(global-set-key (kbd "<C-home>") 'beginning-of-buffer)
-(global-set-key (kbd "<end>") 'end-of-line)
+
 
 ;;; MAJOR MODES ================================================================
 
