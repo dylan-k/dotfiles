@@ -67,6 +67,7 @@ function documents { set-location "H:\Documents\" }
 function docs { set-location "H:\Documents\" }
 function downloads { set-location "C:\Users\Dylan\Downloads\" }
 function sites { set-location "H:\Sites\" ; explorer.exe . }
+function blog { set-location "H:\Sites\nocategories" ; explorer.exe .; workspace }
 function notes { set-location "H:\Notes\" ; explorer.exe .; workspace }
 function valestyles { set-location "$env:userprofile\.config\vale"; workspace }
 function artsite { set-location "H:\Sites\art\" ; explorer.exe .; workspace }
