@@ -71,6 +71,7 @@ function blog { set-location "H:\Sites\nocategories" ; explorer.exe .; workspace
 function notes { set-location "H:\Notes\" ; explorer.exe .; git fetch; git status; code H:\Notes\notes.code-workspace }
 function valestyles { set-location "$env:userprofile\.config\vale"; workspace }
 function artsite { set-location "H:\Sites\art\" ; explorer.exe .; workspace }
+function weather { curl wttr.in }
 
 ## Moving around
 function root { cd / }
