@@ -21,6 +21,9 @@
 # update git repo and then open in vscode
 function workspace {
   git fetch;
+  git stash save;
+  git pull;
+  git stash pop;
   git status;
   code .
 }
