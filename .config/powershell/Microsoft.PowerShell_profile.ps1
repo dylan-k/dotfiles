@@ -77,17 +77,17 @@ function artsite { set-location "H:\Sites\art\" ; explorer.exe .; workspace }
 function weather { curl wttr.in }
 
 ## Moving around
-function root { cd / }
-function up { cd ../ }
-function up2 { cd ../.. }
-function up3 { cd ../../.. }
-function up4 { cd ../../../.. }
-function up5 { cd ../../../../.. }
-function up6 { cd ../../../../../.. }
-function up7 { cd ../../../../../../.. }
-function up8 { cd ../../../../../../../.. }
-function up9 { cd ../../../../../../../../.. }
-function up10 { cd ../../../../../../../../../.. }
+function root { set-location / }
+function up { set-location ../ }
+function up2 { set-location ../.. }
+function up3 { set-location ../../.. }
+function up4 { set-location ../../../.. }
+function up5 { set-location ../../../../.. }
+function up6 { set-location ../../../../../.. }
+function up7 { set-location ../../../../../../.. }
+function up8 { set-location ../../../../../../../.. }
+function up9 { set-location ../../../../../../../../.. }
+function up10 { set-location ../../../../../../../../../.. }
 
 # New-Alias which get-command
 Remove-Item alias:\where -Force
