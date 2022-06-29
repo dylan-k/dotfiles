@@ -1,11 +1,11 @@
 # i3status Variables
 # source: https://github.com/addy-dclxvi/i3-starterpack
-# WIFI: My interface is wlp1s0b1 and my ethernet adapter is enp1s0, 
+# WIFI: My interface is wlp1s0b1 and my ethernet adapter is enp1s0,
 # You can find yours by /sbin/iwconfig or iwconfig command.
 # BATTERY: My battery id is BAT1, You can find yours by ls /sys/class/power_supply/ command.
 # VOLUME: My volume mixer is Alsa, probably also work for You. If not, see manual page to configure PulseAudio.
-# CPU: To use CPU temperature, You need your CPU temperature path. 
-# If /sys/class/thermal/thermal_zone0/temp doesn't work try /sys/devices/platform/coretemp.0/temp1_input. 
+# CPU: To use CPU temperature, You need your CPU temperature path.
+# If /sys/class/thermal/thermal_zone0/temp doesn't work try /sys/devices/platform/coretemp.0/temp1_input.
 # Still doesn't work? Ask Google yum
 # TIME: here's a cheatsheet https://devhints.io/datetime
 # COLOR you can style the span tags' foreground and background properties, using color hexcodes
@@ -28,7 +28,7 @@ general {
 # order += "ethernet enp1s0"
 order += "cpu_usage"
 order += "battery 0"
-order += "wireless wlp1s0b1"
+order += "wireless wlp4s0"
 order += "volume master"
 order += "tztime local"
 
@@ -76,7 +76,7 @@ battery 0 {
         separator = true
 }
 
-wireless wlp1s0b1 {
+wireless wlp4s0 {
         format_up = "<span foreground='#929394'>  %essid %quality</span>"
         format_down = "<span foreground='#929394'>  Disconnected </span>"
         separator = true
@@ -97,4 +97,3 @@ tztime local {
 		format_time = " %a %b %-d  %I:%M %p"
     separator = false
 }
-
