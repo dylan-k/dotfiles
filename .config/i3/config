@@ -23,7 +23,7 @@ set $shift shift
 # WORKSPACES
 ###############################################################################
 
-# Define names for default workspaces 
+# Define names for default workspaces
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "01 Desktop"
 set $ws2 "02 Writing"
@@ -46,7 +46,9 @@ assign [class="^Code$"]                   $ws5
 assign [class="^obsidian$"]               $ws2
 assign [class="^Zathura$"]                $ws2
 assign [class="^X-terminal-emulator$"]    $ws3
+assign [class="^XTerm$"]                  $ws3
 assign [class="^Brave-browser$"]          $ws4
+assign [class="^Google-chrome$"]          $ws4
 # several of these are startup applications, listed below
 
 # switch to workspace
@@ -93,14 +95,14 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+space exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 
 # start a terminal
-bindsym $mod+grave exec i3-sensible-terminal
+bindsym $mod+grave exec xterm
 
 # start file explorer
 bindsym $mod+e exec xfe
 
 # task manager
-bindsym $control+$alt+BackSpace exec xfce4-taskmanager 
-bindsym $mod+$alt+BackSpace exec xfce4-taskmanager 
+bindsym $control+$alt+BackSpace exec xfce4-taskmanager
+bindsym $mod+$alt+BackSpace exec xfce4-taskmanager
 
 
 
@@ -129,7 +131,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Brightness control
 # make sure brightnessctl is installed
-# your user needs to be in the "video group"
+# your user needs to be in the "video" group
 # sudo gpasswd -a <username> video
 # then reboot.
 bindsym XF86MonBrightnessUp exec brightnessctl set +10% # increase
@@ -199,7 +201,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # log out / lock screen
-bindsym $mod+l exec loginctl lock-session 
+bindsym $mod+l exec loginctl lock-session
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -214,10 +216,10 @@ bindsym $mod+Shift+r restart
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
 
-  # Pressing left will shrink the window’s width.
-  # Pressing right will grow the window’s width.
-  # Pressing up will shrink the window’s height.
-  # Pressing down will grow the window’s height.
+  # Pressing left will shrink the window's width.
+  # Pressing right will grow the window's width.
+  # Pressing up will shrink the window's height.
+  # Pressing down will grow the window's height.
   bindsym j resize shrink width 10 px or 10 ppt
   bindsym k resize grow height 10 px or 10 ppt
   bindsym l resize shrink height 10 px or 10 ppt
@@ -289,7 +291,7 @@ client.background         #2f343f
 #  For use with i3-gaps fork of i3 window manager
 #  More info visit: https://github.com/Airblader/i3
 
-# Note: In order to use gaps you need to disable window titlebars. 
+# Note: In order to use gaps you need to disable window titlebars.
 # This can be done by adding the following line to your config.
 for_window [class=".*"] border pixel 0
 
@@ -366,7 +368,7 @@ smart_gaps on
 exec xrdb ~/.Xresources
 
 # desktop wallpaper
-exec_always --no-startup-id feh --bg-scale /home/dylan/Assets/wallpaper/desktop-background.jpg# sets wallpaper
+exec_always --no-startup-id feh --bg-scale /home/dylan/Assets/wallpaper/desktop-background.png
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -382,7 +384,7 @@ exec --no-startup-id nm-applet
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 # controls for the screen's color temperature
-# exec --no-startup-id redshift-gtk 
+# exec --no-startup-id redshift-gtk
 exec --no-startup-id fluxgui
 
 # prevent touchpad interruptions while typing
@@ -395,7 +397,8 @@ exec syndaemon -i .5 -K -t -R -d
 # -----------------------------------------------------------------------------
 
 exec --no-startup-id xfe
-exec --no-startup-id /opt/obsidian/Obsidian.AppImage %U
-exec --no-startup-id i3-sensible-terminal
+exec --no-startup-id code /home/dylan/Notes
+exec --no-startup-id xterm
 # exec --no-startup-id code
-exec --no-startup-id brave-browser
+
+exec --no-startup-id google-chrome

@@ -151,3 +151,9 @@ NODE_PATH=$HOME/.nvm/versions/node/v17.2.0/lib/node_modules.
 # autojump: replacement for CD that learns
 # https://github.com/wting/autojump
  [[ -s /home/dylan/.autojump/etc/profile.d/autojump.sh ]] && source /home/dylan/.autojump/etc/profile.d/autojump.sh
+
+# load .Xresources
+xrdb -merge ~/.Xresources
+
+# set preferred terminal
+export TERMINAL=/usr/bin/xterm
