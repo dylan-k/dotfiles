@@ -1,6 +1,6 @@
 # i3status Variables
 # source: https://github.com/addy-dclxvi/i3-starterpack
-# WIFI: My interface is wlp1s0b1 and my ethernet adapter is enp1s0,
+# WIFI: My interface is wlan0 and my ethernet adapter is enp1s0,
 # You can find yours by /sbin/iwconfig or iwconfig command.
 # BATTERY: My battery id is BAT1, You can find yours by ls /sys/class/power_supply/ command.
 # VOLUME: My volume mixer is Alsa, probably also work for You. If not, see manual page to configure PulseAudio.
@@ -28,7 +28,7 @@ general {
 # order += "ethernet enp1s0"
 order += "cpu_usage"
 order += "battery 0"
-order += "wireless wlp4s0"
+order += "wireless wlan0"
 order += "volume master"
 order += "tztime local"
 
@@ -76,7 +76,7 @@ battery 0 {
         separator = true
 }
 
-wireless wlp4s0 {
+wireless wlan0 {
         format_up = "<span foreground='#929394'>  %essid %quality</span>"
         format_down = "<span foreground='#929394'>  Disconnected </span>"
         separator = true

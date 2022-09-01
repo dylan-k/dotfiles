@@ -42,6 +42,7 @@ set $ws10 "10"
 # terminal will show for example: WM_CLASS(STRING) = "code", "Code"
 # that second value e.g. "Code" is the classname.
 assign [class="^Xfe$"]                    $ws1
+assign [class="^X-file-manager$"]         $ws1
 assign [class="^Code$"]                   $ws5
 assign [class="^obsidian$"]               $ws2
 assign [class="^Zathura$"]                $ws2
@@ -91,18 +92,36 @@ for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec $HOME/.config/dmenu/dmenu-bind.sh
 bindsym $mod+space exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 
 # start a terminal
 bindsym $mod+grave exec xterm
 
 # start file explorer
-bindsym $mod+e exec xfe
+# bindsym $mod+e exec xfe
+bindsym $mod+e exec x-file-manager
 
 # task manager
 bindsym $control+$alt+BackSpace exec xfce4-taskmanager
 bindsym $mod+$alt+BackSpace exec xfce4-taskmanager
+
+# Program-Related Bindings
+# installer start
+# bindsym $mod+i exec su-to-root -X -c /usr/sbin/debian-installer-launcher
+# installer end
+# bindsym $mod+Ctrl+w exec x-www-browser
+# bindsym $mod+Ctrl+e exec editor
+# bindsym $mod+Ctrl+f exec x-file-manager
+bindsym $mod+Return exec xterm
+  bindsym $mod+Ctrl+m exec /usr/local/bin/usbpmount.sh
+  bindsym $mod+Ctrl+u exec /usr/local/bin/usb-unmount.sh
+  bindsym $mod+Ctrl+n exec connman-ui-gtk --tray
+  bindsym $mod+Ctrl+l exec /usr/bin/i3lock -n -p default --color=000000
+
+  bindsym --release Print exec scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ & mirage ~/images/$f'
+#  bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+  # bindsym $mod+Shift+e exec /usr/bin/star-logout
 
 
 
@@ -247,8 +266,13 @@ bindsym $mod+r mode "resize"
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-font pango:Noto Sans 8
+# font pango:DejaVu Sans Mono 8
+font pango:Noto Sans 10
+
+# disable title bar / window titles
+for_window [class="^.*"] border pixel 1
+default_border pixel 1
+default_floating_border pixel 1
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
@@ -277,7 +301,7 @@ bar {
 
 #                         border   bkgrnd   text     indic8r  child_brdr
 #-----------------------------------------------------------------------
-client.focused            #bf616a  #2f343f  #d8dee8  #bf616a  #d8dee8
+client.focused            #000000  #000000  #d8dee8  #000000  #000000
 client.focused_inactive   #2f343f  #2f343f  #d8dee8  #2f343f  #2f343f
 client.unfocused          #2f343f  #2f343f  #d8dee8  #2f343f  #2f343f
 client.urgent             #2f343f  #2f343f  #d8dee8  #2f343f  #2f343f
@@ -293,17 +317,17 @@ client.background         #2f343f
 
 # Note: In order to use gaps you need to disable window titlebars.
 # This can be done by adding the following line to your config.
-for_window [class=".*"] border pixel 0
+# for_window [class=".*"] border pixel 0
 
 # Hide edge borders only if there is one window with no gaps
-hide_edge_borders smart_no_gaps
+# hide_edge_borders smart_no_gaps
 
 # Activate smart borders (always)
-smart_borders on
+# smart_borders on
 
-gaps inner 20
-gaps outer 0
-smart_gaps on
+# gaps inner 20
+# gaps outer 0
+# smart_gaps on
 
 # Examples
 # gaps inner all set 20
@@ -376,29 +400,51 @@ exec_always --no-startup-id feh --bg-scale /home/dylan/Assets/wallpaper/desktop-
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
+exec --no-startup-id connman-ui-gtk --tray
 
 # polkit handles user authentication, e.g. when editing system files in vscode
 # requires a policy kit installed. I chose one for gnome, not finidng a generic
 # installed via   sudo apt install policykit-1-gnome
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 # controls for the screen's color temperature
 # exec --no-startup-id redshift-gtk
-exec --no-startup-id fluxgui
+# exec --no-startup-id fluxgui
 
 # prevent touchpad interruptions while typing
 # source: https://www.computercorrect.com/2012/operating-systems/linux/xubuntu/configure-disable-touchpad-while-typing-delay/
 # currently set to half-second delay. may need more.
-exec syndaemon -i .5 -K -t -R -d
+# exec syndaemon -i .5 -K -t -R -d
+exec --no-startup-id $HOME/.config/conky/start_conky
+exec --no-startup-id sleep 6; x-terminal-emulator -t 'Star-Welcome' -e /usr/bin/star-welcome --firstrun
+
+
+exec --no-startup-id dunst
+exec xrdb -merge ~/.Xresources
+
+# Floating
+  for_window [class="Lxappearance"] floating enable
+  for_window [class="Arandr"] floating enable
+  for_window [class="connman-ui-gtk"] floating enable border normal
+  for_window [title="usbpmount"] floating enable border normal
+  for_window [title="usb-unmount.sh"] floating enable border normal
+  for_window [title="star-logout"] floating enable border normal
+  for_window [class="alsamixer"] floating enable border pixel 2
+  for_window [class="qalculate-gtk"] floating enable border pixel 2
+  for_window [class="GParted"] floating enable border normal
+
+  # for_window [class="Nitrogen"] floating enable border normal
+  for_window [title="Star-Welcome"] floating enable border normal
+  # for_window [class="mpv"] floating enable border normal
 
 
 # Startup Apps
 # -----------------------------------------------------------------------------
 
-exec --no-startup-id xfe
+# exec --no-startup-id xfe
+exec --no-startup-id X-file-manager
 exec --no-startup-id code /home/dylan/Notes
 exec --no-startup-id xterm
 # exec --no-startup-id code
-
 exec --no-startup-id google-chrome
