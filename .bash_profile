@@ -7,3 +7,5 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
 
 # settings for homebrew linux
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# I try not to add stuff here, but sometimes scripts do it.
