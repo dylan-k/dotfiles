@@ -1,12 +1,13 @@
 # DYLAN'S POWERSHELL PROFILE
 # like .bash_profile but for Windows PowerShell
+#
 # store file in:
-# Windows - $Home\Documents\WindowsPowerShell\profile.ps1
-# Windows - $Home\Documents\WindowsPowerShell\Microsoft.VSCode_profile.ps1
 # Windows - $Home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 # Linux - ~/.config/powershell/Microsoft.Powershell_profile.ps1
 # macOS - ~/.config/powershell/Microsoft.Powershell_profile.ps1
-###############################################################################
+#
+# after saving changes, do `.$profile` in powershell to reload
+################################################################################
 
 
 # PATH
@@ -26,7 +27,7 @@ function workspace {
 
 # quickly edit this config file
 function config {
-  code $env:userprofile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+  code $profile
 }
 
 # hard reset git repository to latest online version
@@ -52,40 +53,48 @@ function flatten {
 
 # open emacs in terminal by default
 # source: https://superuser.com/questions/339105/how-do-i-launch-emacs-in-terminal-mode-within-powershell
-# $emacs_wildcard = "C:\ProgramData\chocolatey\bin\emacs.exe"
-# if ($(Test-Path $emacs_wildcard)) {
-#   $emacs_path = (Get-ChildItem $emacs_wildcard)[-1].FullName -replace ' ', '` '
-#   function emacs { "$emacs_path -nw $args" | Invoke-Expression }
-# }
+$emacs_wildcard = "C:\ProgramData\chocolatey\bin\emacs.EXE"
+if ($(Test-Path $emacs_wildcard)) {
+  $emacs_path = (Get-ChildItem $emacs_wildcard)[-1].FullName -replace ' ', '` '
+  function emacs { "$emacs_path -nw $args" | Invoke-Expression }
+}
+
 
 # ALIASES
 ################################################################################
 
 function open { explorer.exe . }
 function home { set-location "H:\" }
+function documents { set-location "H:\Documents\" }
+function docs { set-location "H:\Documents\" }
+function downloads { set-location "C:\Users\Dylan\Downloads\" }
 function documents { set-location "H:\Documents\" ; explorer.exe . }
 function projects { set-location "H:\Projects\" ; explorer.exe . }
 function docs { set-location "H:\Documents\" }
 function downloads { set-location "C:\Users\Dylan\Downloads\" }
 function sites { set-location "H:\Sites\" ; explorer.exe . }
+function blog { set-location "H:\Sites\nocategories" ; explorer.exe .; workspace }
+function notes { set-location "H:\Notes\" ; explorer.exe .; git fetch; git status; code H:\Notes\notes.code-workspace }
 function notes { set-location "H:\Notes\" ; explorer.exe .; workspace }
 function valestyles { set-location "$env:userprofile\.config\vale"; workspace }
 function artsite { set-location "H:\Sites\art\" ; explorer.exe .; workspace }
+function weather { curl wttr.in }
+function artsite { set-location "H:\Sites\art\" ; explorer.exe .; workspace }
 
 ## Moving around
-function root { cd / }
-function up { cd ../ }
-function up2 { cd ../.. }
-function up3 { cd ../../.. }
-function up4 { cd ../../../.. }
-function up5 { cd ../../../../.. }
-function up6 { cd ../../../../../.. }
-function up7 { cd ../../../../../../.. }
-function up8 { cd ../../../../../../../.. }
-function up9 { cd ../../../../../../../../.. }
-function up10 { cd ../../../../../../../../../.. }
+function root { set-location / }
+function up { set-location ../ }
+function up2 { set-location ../.. }
+function up3 { set-location ../../.. }
+function up4 { set-location ../../../.. }
+function up5 { set-location ../../../../.. }
+function up6 { set-location ../../../../../.. }
+function up7 { set-location ../../../../../../.. }
+function up8 { set-location ../../../../../../../.. }
+function up9 { set-location ../../../../../../../../.. }
+function up10 { set-location ../../../../../../../../../.. }
 
-# New-Alias which get-command
+# # New-Alias which get-command
 Remove-Item alias:\where -Force
 New-Alias where get-command -Force
 
@@ -97,8 +106,12 @@ New-Alias where get-command -Force
 # annoyingly this breaks some scripts and breaks "open directory in terminal"
 # set-location "H:\"
 
-# Powerline
+# Starship Prompt
+# https://starship.rs/guide/#%F0%9F%9A%80-installation
+# https://starship.rs/config/#prompt
 # ------------------------------------------------------------------------------
+Invoke-Expression (&starship init powershell)
+$ENV:STARSHIP_CACHE = "C:\Temp"
 
 # Install with:
 #   Install-Module posh-git -Scope CurrentUser
