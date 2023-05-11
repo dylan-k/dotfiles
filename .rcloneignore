@@ -1,0 +1,44 @@
+# Filter file for use with rclone
+# See https://rclone.org/filtering/ for filtering rules
+# NOTICE: If you make changes to this file you MUST do a --resync run.
+#         Run with --dry-run to see what changes will be made.
+
+# Dropbox wont sync some files so filter them away here.
+# See https://help.dropbox.com/installs-integrations/sync-uploads/files-not-syncing
+- .dropbox.attr
+- ~*.tmp
+- ~$*
+- .~*
+- desktop.ini
+- .dropbox
+
+
+# Source control and build files can be ignored usually
+- **/node_modules/**
+- **/.git/**
+
+# OS or Editor folders
+- ._*
+- .cache
+- .DS_Store
+- .AppleDouble
+- .LSOverride
+- .idea
+- .project
+- .settings
+- .tmproj
+- *.esproj
+- *.sublime-project
+- *.sublime-workspace
+- nbproject
+- Thumbs.db
+- Thumbs.db:encryptable
+- ehthumbs.db
+- ehthumbs_vista.db
+- desktop.ini
+- Desktop.ini
+- $RECYCLE.BIN
+
+# Other example filters
+#- /TiBU/
+#- /Photos/
