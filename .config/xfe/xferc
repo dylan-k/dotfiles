@@ -1,8 +1,8 @@
 [OPTIONS]
-height=746
+height=747
 toolstoolbar=1
 folder_warn=1
-panel_view=3
+panel_view=2
 width=1366
 use_startup_notification=1
 preserve_date_warn=1
@@ -12,7 +12,7 @@ use_trash_can=1
 auto_save_layout=1
 use_trash_bypass=0
 mount_warn=1
-treepanel_tree_pct=0.2
+treepanel_tree_pct=0.199
 xfv_replaced=1
 confirm_overwrite=1
 paneltoolbar=1
@@ -35,7 +35,7 @@ locationbar=1
 confirm_drag_and_drop=1
 
 [HISTORY]
-open=code:
+open=libreoffice:zathura:code:xfwrite:
 filter=*:
 
 [KEYBINDINGS]
@@ -117,23 +117,46 @@ empty_trash_can=Ctrl-Del
 rotate_left=Ctrl-L
 
 [RIGHT PANEL]
-type_size=67
-deldate_size=150
-origpath_size=200
+type_size=293
+deldate_size=314
+origpath_size=418
 liststyle=0
-attr_size=67
-user_size=35
+attr_size=293
+user_size=153
 hiddenfiles=1
 dirs_first=1
-ext_size=67
-grou_size=35
-modd_size=102
+ext_size=293
+grou_size=153
+modd_size=446
 ignore_case=1
 sort_func=ascendingCase
 showthumbnails=0
-name_size=401
+name_size=1755
 lastdir=/home/dylan
-size_size=41
+size_size=180
+
+[DIR PANEL]
+hidden_dir=0
+sort_func=ascendingCase
+
+[LEFT PANEL]
+type_size=5610
+deldate_size=200
+origpath_size=200
+liststyle=0
+attr_size=5610
+user_size=2927
+hiddenfiles=1
+dirs_first=1
+ext_size=5610
+grou_size=2927
+modd_size=8541
+ignore_case=1
+sort_func=ascendingCase
+showthumbnails=0
+name_size=26887
+lastdir=/usr/share/themes
+size_size=3452
 
 [PROGS]
 archiver=/usr/bin/archive
@@ -141,36 +164,18 @@ txteditor=code
 videoplayer=smplayer
 xterm=xterm
 
-[LEFT PANEL]
-type_size=67
-deldate_size=200
-origpath_size=200
-liststyle=0
-attr_size=67
-user_size=35
-hiddenfiles=1
-dirs_first=1
-ext_size=67
-grou_size=35
-modd_size=102
-ignore_case=1
-sort_func=ascendingCase
-showthumbnails=0
-name_size=321
-lastdir=/home/dylan
-size_size=41
-
 [SETTINGS]
 listforecolor=#d2d2d2
 iconpath=/usr/share/xfe/icons/Adwaita
 hilitecolor=#181818
 single_click=0
 highlightcolor=#1e1e1e
-textfont=DejaVu Sans [PfEd],80,normal,regular
+textfont=Inter [RSMS],140,normal,regular
 bordercolor=Black
 activecolorpane=1
-font=DejaVu Sans [PfEd],80,normal,regular
+font=Inter [RSMS],140,normal,regular
 listbackcolor=#1e1e1e
+scrollbarsize=15
 shadowcolor=#0e0e0e
 file_tooltips=1
 tippause=500
@@ -178,7 +183,7 @@ scrollbarcolor=#1e1e1e
 forecolor=#d2d2d2
 basecolor=Gray8
 time_format=%x %X
-relative_resize=1
+selforecolor=Gray100
 selbackcolor=#505050
 wheellines=1
 smooth_scroll=1
@@ -186,7 +191,7 @@ use_clearlooks=1
 attentioncolor=Red
 backcolor=#1e1e1e
 tiptime=10000
-selforecolor=Gray100
+relative_resize=1
 pbarcolor=Blue
 save_win_pos=0
 show_pathlinker=1
@@ -234,7 +239,7 @@ mk=<txteditor>,<txtviewer>,<txteditor>;Makefile;make_32x32.png;make_16x16.png;;
 7z=7z x,7z x;7ZIP Archive;zip_32x32.png;zip_16x16.png;;
 hpp=<txteditor>,<txtviewer>,<txteditor>;C++ Header;h_32x32.png;h_16x16.png;;
 m=<txteditor>,<txtviewer>,<txteditor>;Matlab Source;m_32x32.png;m_16x16.png;;
-sxd=lodraw,lodraw,lodraw;OpenOffice 1.0 Draw;sxd_32x32.png;sxd_16x16.png;;
+o=,,;Object File;o_32x32.png;o_16x16.png;;
 menu.lst=<txteditor>,<txtviewer>,<txteditor>;Grub Configuration;config_32x32.png;config_16x16.png;;
 xfirc=<txteditor>,<txtviewer>,<txteditor>;Xfe Configuration;config_32x32.png;config_16x16.png;;
 pps=loimpress,loimpress,loimpress;PowerPoint Show;ppt_32x32.png;ppt_16x16.png;;
@@ -260,6 +265,7 @@ tbz2=<archiver>,<archiver>,<archiver>;Bzipped Tar;tbz2_32x32.png;tbz2_16x16.png;
 cc=<txteditor>,<txtviewer>,<txteditor>;C++ Source;cc_32x32.png;cc_16x16.png;;
 install=<txteditor>,<txtviewer>,<txteditor>;Install File;info_32x32.png;info_16x16.png;;
 otp=loimpress,loimpress,loimpress;OpenDocument Template Presentation;odp_32x32.png;odp_16x16.png;;
+odg=lodraw,lodraw,lodraw;OpenDocument Graphic;odg_32x32.png;odg_16x16.png;;
 xferc=<txteditor>,<txtviewer>,<txteditor>;Xfe Configuration;config_32x32.png;config_16x16.png;;
 wmf=,,;WMF Image;drw_32x32.png;drw_16x16.png;;
 ini=<txteditor>,<txtviewer>,<txteditor>;Configuration file;config_32x32.png;config_16x16.png;;
@@ -285,9 +291,10 @@ sci=<txteditor>,<txtviewer>,<txteditor>;Scilab Function;sci_32x32.png;sci_16x16.
 rm=realplay,realplay,;RealPlayer Video;video_32x32.png;video_16x16.png;;
 java=<txteditor>,<txtviewer>,<txteditor>;Java Source;java_32x32.png;java_16x16.png;;
 ac=<txteditor>,<txtviewer>,<txteditor>;Configure Makefile;make_32x32.png;make_16x16.png;;
-conf=<txteditor>,<txtviewer>,<txteditor>;Configuration file;config_32x32.png;config_16x16.png;;
+webm=<videoplayer>,<videoplayer>,;WEBM Video;video_32x32.png;video_16x16.png;;
 ttf=fontforge,,fontforge;TrueType Font;font_32x32.png;font_16x16.png;;
 midi=timidity,timidity,;MIDI File;midi_32x32.png;midi_16x16.png;;
+m4v=<videoplayer>,<videoplayer>,;M4V Video;video_32x32.png;video_16x16.png;;
 docx=lowriter,lowriter,lowriter;Word OOXML Document;doc_32x32.png;doc_16x16.png;;
 ott=lowriter,lowriter,lowriter;OpenDocument Template Text;odt_32x32.png;odt_16x16.png;;
 dvi=xdvi,xdvi,;DVI Document;dvi_32x32.png;dvi_16x16.png;;
@@ -318,6 +325,7 @@ sfd=fontforge,fontforge,fontforge;Fontforge Source Font;font_32x32.png;font_16x1
 copyright=<txteditor>,<txtviewer>,<txteditor>;Copyright File;info_32x32.png;info_16x16.png;;
 jpeg=<imgeditor>,<imgviewer>,<imgeditor>;JPEG Image;jpeg_32x32.png;jpeg_16x16.png;;
 arj=<archiver>,<archiver>,<archiver>;ARJ Archive;arj_32x32.png;arj_16x16.png;;
+conf=<txteditor>,<txtviewer>,<txteditor>;Configuration file;config_32x32.png;config_16x16.png;;
 gz=<archiver>,<archiver>,<archiver>;Gzipped File;gz_32x32.png;gz_16x16.png;;
 rar=<archiver>,<archiver>,<archiver>;RAR Archive;rar_32x32.png;rar_16x16.png;;
 pot=loimpress,loimpress,loimpress;PowerPoint Template;ppt_32x32.png;ppt_16x16.png;;
@@ -379,9 +387,8 @@ bmp=<imgeditor>,<imgviewer>,<imgeditor>;BMP Image;bmp_32x32.png;bmp_16x16.png;;
 htm=firefox,firefox,<txteditor>;Hyper Text;html_32x32.png;html_16x16.png;;
 fb2=fbreader,fbreader,;FB2 eBook;epub_32x32.png;epub_16x16.png;;
 makefile.am=<txteditor>,<txtviewer>,<txteditor>;Automake Makefile;make_32x32.png;make_16x16.png;;
-xml=<txteditor>,<txtviewer>,<txteditor>;XML File;text_32x32.png;text_16x16.png;;
 diff=<txteditor>,<txtviewer>,<txteditor>;Diff File;text_32x32.png;text_16x16.png;;
-o=,,;Object File;o_32x32.png;o_16x16.png;;
+xml=<txteditor>,<txtviewer>,<txteditor>;XML File;text_32x32.png;text_16x16.png;;
 js=<txteditor>,<txtviewer>,<txteditor>;Javascript;html_32x32.png;html_16x16.png;;
 tiff=<imgeditor>,<imgviewer>,<imgeditor>;TIFF Image;tif_32x32.png;tif_16x16.png;;
 rtf=lowriter,lowriter,lowriter;RTF Document;doc_32x32.png;doc_16x16.png;;
@@ -390,7 +397,7 @@ ots=localc,localc,localc;OpenDocument Template Spreadsheet;ods_32x32.png;ods_16x
 odb=lobase,lobase,lobase;OpenDocument Database;odf_32x32.png;odf_16x16.png;;
 bz2=<archiver>,<archiver>,<archiver>;Bzipped File;bz2_32x32.png;bz2_16x16.png;;
 slc=scribus,scribus,scribus;Scribus Document;sla_32x32.png;sla_16x16.png;;
-odg=lodraw,lodraw,lodraw;OpenDocument Graphic;odg_32x32.png;odg_16x16.png;;
+sxd=lodraw,lodraw,lodraw;OpenOffice 1.0 Draw;sxd_32x32.png;sxd_16x16.png;;
 odf=lomath,lomath,lomath;OpenDocument Formula;odf_32x32.png;odf_16x16.png;;
 pls=<audioplayer>,<audioplayer>,;XMMS Playlist;mp3_32x32.png;mp3_16x16.png;;
 about-nls=<txteditor>,<txtviewer>,<txteditor>;NLS File;info_32x32.png;info_16x16.png;;
@@ -421,7 +428,7 @@ showthumbnails=0
 name_size=200
 size_size=60
 
-[DIR PANEL]
-hidden_dir=0
-sort_func=ascendingCase
+[bookmarks]
+BOOKMARK1=/home/dylan/Notes
+BOOKMARK2=/home/dylan
 

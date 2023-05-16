@@ -16,6 +16,8 @@
 # COMMANDS
 ###############################################################################
 
+alias weather="curl wttr.in"
+
 alias open="xdg-open"
 
 alias flatten="find ./ -mindepth 999 -type f -exec mv -i '{}' . \;"
@@ -29,7 +31,7 @@ alias gh='history|grep'
 workspace() {
   echo "fetching updates..."
   git fetch && 
-  echo "staashing local changes..."
+  echo "stashing local changes..."
   git stash save --include-untracked && 
   echo "pulling local changes..."
   git pull && 
@@ -43,10 +45,10 @@ workspace() {
 alias overwrite="git fetch; git reset --hard"
 
 #tidy all the things
-alias cleanup='echo "Cleaning Up" && sudo apt -f install && sudo apt autoremove && sudo apt -y autoclean && sudo apt -y clean'
+alias cleanup="echo 'Cleaning Up' && sudo apt -f install && sudo apt autoremove && sudo apt -y autoclean && sudo apt -y clean"
 
 # Update all the things
-alias update='sudo apt-get update; sudo apt-get upgrade; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias update="sudo apt-get update; sudo apt-get upgrade; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup"
 
 
 
@@ -54,16 +56,26 @@ alias update='sudo apt-get update; sudo apt-get upgrade; npm update -g; sudo gem
 ###############################################################################
 
 alias root="cd /"
-alias up="cd ../"
-alias up2="cd ../.."
-alias up3="cd ../../.."
-alias up4="cd ../../../.."
-alias up5="cd ../../../../.."
-alias up6="cd ../../../../../.."
-alias up7="cd ../../../../../../.."
-alias up8="cd ../../../../../../../.."
-alias up9="cd ../../../../../../../../.."
-alias up10="cd ../../../../../../../../../.."
+# go up in dir structure. e.g. 'up 5'
+up () {
+  local d=""
+  local limit="$1"
+
+  # Default to limit of 1
+  if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
+    limit=1
+  fi
+
+  for ((i=1;i<=limit;i++)); do
+    d="../$d"
+  done
+
+  # perform cd. Show error if cd fails
+  if ! cd "$d"; then
+    echo "Couldn't go up $limit dirs.";
+  fi
+}
+
 
 alias home="cd ~/"
 alias desktop="cd ~/Desktop"
@@ -88,7 +100,7 @@ alias recipes="cd ~/Documents/Home/recipes && workspace"
 ###############################################################################
 
 #send git commands to headless dotfiles repo like `dotfiles status`
-alias dotfiles='git --git-dir=/home/dylan/.dotfiles/ --work-tree=/home/dylan'
+alias dotfiles="git --git-dir=/home/dylan/.dotfiles/ --work-tree=/home/dylan"
 
 alias valestyles="cd ~/.config/vale/ && git fetch --all && git submodule foreach git pull origin master && git status && open . && subl . && subl ~/.vale.ini"
 
@@ -118,5 +130,8 @@ fi
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
-
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
 
