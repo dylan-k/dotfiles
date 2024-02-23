@@ -157,3 +157,8 @@ xrdb -merge ~/.Xresources
 
 # set preferred terminal
 export TERMINAL=/usr/bin/xterm
+
+# Install Ruby Gems to ~/gems
+# for use with Jekyll static CMS
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
