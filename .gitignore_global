@@ -1,9 +1,9 @@
 # boilerplate .gitignore file
 # sets some global ignores for git
 # save/symlink this file then set git to use it with soemthing like:
-#   git config --global core.excludesfile ~/.gitignore
+#   git config --global core.excludesfile ~/.gitignore_global
 #   or for windows:
-#   git config --global core.excludesfile %USERPROFILE%\.gitignore
+#   git config --global core.excludesfile '~/.gitignore_global'
 
 
 # Ignore docs files

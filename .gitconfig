@@ -1,6 +1,6 @@
 [user]
-  name = Dylan Kinnett
-  email = dylan@nocategories.net
+	name = Dylan Kinnett
+	email = dkinnett@thewalters.org
 
 [alias]
   co = checkout
@@ -9,7 +9,7 @@
   br = branch
 
 [color]
-    ui = auto
+	ui = auto
   [color "branch"]
     current = yellow reverse
     local = yellow
@@ -26,3 +26,12 @@
     untracked = cyan
   [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	autocrlf = input
+	eol = lf
+	editor = code --wait
+	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes_global
+[init]
+	defaultBranch = main
+[push]
+	default = current
