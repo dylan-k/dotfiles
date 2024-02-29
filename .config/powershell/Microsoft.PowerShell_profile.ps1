@@ -15,7 +15,7 @@
 # $env:Path += ";$env:userprofile\AppData\Local\Programs"
 
 
-# FUNCTIONS
+# ALIASES
 ################################################################################
 
 # update git repo and then open in vscode
@@ -32,7 +32,7 @@ function config {
 
 # hard reset git repository to latest online version
 function overwrite {
-  git fetch;
+  git fetch --all;
   git reset --hard origin/main;
   git reset --hard origin/master;
 
@@ -59,9 +59,10 @@ if ($(Test-Path $emacs_wildcard)) {
   function emacs { "$emacs_path -nw $args" | Invoke-Expression }
 }
 
-
-# ALIASES
-################################################################################
+# Define dotfiles function
+function dotfiles {
+    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $args
+}
 
 function open { explorer.exe . }
 function home { set-location "H:\" }
@@ -74,8 +75,7 @@ function docs { set-location "H:\Documents\" }
 function downloads { set-location "C:\Users\Dylan\Downloads\" }
 function sites { set-location "H:\Sites\" ; explorer.exe . }
 function blog { set-location "H:\Sites\nocategories" ; explorer.exe .; workspace }
-function notes { set-location "H:\Notes\" ; explorer.exe .; git fetch; git status; code H:\Notes\notes.code-workspace }
-function notes { set-location "H:\Notes\" ; explorer.exe .; workspace }
+function notes { set-location "H:\Notes\" ; code . }
 function valestyles { set-location "$env:userprofile\.config\vale"; workspace }
 function artsite { set-location "H:\Sites\art\" ; explorer.exe .; workspace }
 function weather { curl wttr.in }
@@ -102,24 +102,13 @@ New-Alias where get-command -Force
 # INIT
 ################################################################################
 
-# Set the startup directory
-# annoyingly this breaks some scripts and breaks "open directory in terminal"
-# set-location "H:\"
-
 # Starship Prompt
-# https://starship.rs/guide/#%F0%9F%9A%80-installation
+# https://starship.rs/
 # https://starship.rs/config/#prompt
 # ------------------------------------------------------------------------------
 Invoke-Expression (&starship init powershell)
 $ENV:STARSHIP_CACHE = "C:\Temp"
 
-# Install with:
-#   Install-Module posh-git -Scope CurrentUser
-#   Install-Module oh-my-posh -Scope CurrentUser
-# Import-Module posh-git
-# $env:POSH_GIT_ENABLED = $true
-# Import-Module posh-git
-Invoke-Expression (&starship init powershell)
 
 # Chocolatey profile
 # $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
