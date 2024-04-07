@@ -1,12 +1,9 @@
-# boilerplate .gitattributes file
+# BOILERPLATE .gitattributes FILE
 # define attributes for all your Git repositories on your system.
 # useful for enforcing consistent settings
 # such as line ending normalization and binary file handling.
-# save/symlink this file then set git to use it with soemthing like
-# git config --global core.excludesfile ~/.gitignore_global
-# or for windows
+# save/symlink this file, then set git to use it with something like:
 # git config --global core.attributesfile '~/.gitattributes_global'
-
 
 # Ensure all text files use LF line endings
 * text=auto eol=lf
@@ -15,3 +12,13 @@
 *.jpg binary
 *.png binary
 *.gif binary
+
+# Attributes for markdown and text files
+*.md linguist-detectable
+*.txt linguist-detectable
+*.md linguist-language=Markdown
+*.txt linguist-language=Markdown
+*.md diff=markdown
+*.txt diff=markdown
+*.md filter=tabs-to-spaces
+*.txt filter=tabs-to-spaces
